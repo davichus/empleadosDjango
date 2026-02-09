@@ -47,7 +47,21 @@ def signin(request):
                   "signin.html",
                   {'form': AuthenticationForm})
     else:
-        print(request.POST)
+        user = authenticate(
+            request,
+            username = request.POST['username'],
+            password = request.POST['password']
+        )
+        if user is None:
+            return render(request,
+                          "signin.html",
+                          {'form': AuthenticationForm,
+                           'error': "Usuario o contraseña incorrecta"})
+        else:
+            login(request, user)
+            return redirect('tasks')
+
+    
     
   
 
