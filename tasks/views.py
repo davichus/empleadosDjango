@@ -25,7 +25,3 @@ def signup(request):
             
             except:
                 return HttpResponse("Error al crear el usuario")
-
-           
-
-
